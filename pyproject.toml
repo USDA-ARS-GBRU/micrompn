@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "micrompn"
+authors = [
+    {name = "Adam R. Rivers", email = "adam.rivers@usda.gov"},
+]
+description = "MicroMPN: A Python command line program for automating most probable number (MPN) estimates in microtiter plates" 
+"
+readme = "README.rst"
+requires-python = ">=3.10"
+keywords = ["microbiology", "mpn"]
+license = {text = "CC0"}
+classifiers = [
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Programming Language :: Python :: 3.10",
+]
+dependencies = [
+    "pandas",
+    "numpy",
+    "scipy",
+    "wellmap",
+    "matplotlib",
+]
+dynamic = ["version"]
+
+
+[project.scripts]
+micrompn = "micrompn:main"
