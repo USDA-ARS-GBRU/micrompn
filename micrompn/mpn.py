@@ -346,7 +346,7 @@ def checkInputs_mpn(positive: Union[list, np.array], tubes: Union[list,np.array]
     if any([p > t for p,t in zip(positive, tubes)]):
         raise ValueError("more positive tubes than possible")
 
-def mpn(positive: Union[list[int], np.array], tubes: Union[list[int], np.array], amount: Union[list[float], np.array], conf_level: float = 0.95, CI_method: str = "Jarvis") -> dict:
+def mpn(positive: Union[List[int], np.array], tubes: Union[List[int], np.array], amount: Union[List[float], np.array], conf_level: float = 0.95, CI_method: str = "Jarvis") -> dict:
     """mpn calculates the Most Probable Number (MPN) point estimate and confidence interval for microbial concentrations. Also calculates Blodgett's (2002, 2005, 2010) Rarity Index (RI).
 
     This python code was transpiled from:
