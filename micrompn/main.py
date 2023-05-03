@@ -168,7 +168,7 @@ def process_plate(wellmap_file: str, plate_df: pd.DataFrame, args: argparse.Name
     :return: A data frame of plate, sample, MPN and MPN statistics
     :rtype: pd.DataFrame
     """
-    dtype_dict = {'plate': str, 'sample': str, 'mpn': float, 'mpn_adj': float, 'upper': float, 'lower': float}
+    dtype_dict = {'plate': str, 'sample': str, 'mpn': float, 'mpn_adj': float, 'upper': float, 'lower': float, 'rarity':float}
     temp_df= pd.DataFrame(columns=dtype_dict.keys()).astype(dtype_dict)
     layout = wellmap.load(toml_path=wellmap_file)
     data = layout.merge(right=plate_df, on = "well", how='left')
@@ -178,7 +178,7 @@ def process_plate(wellmap_file: str, plate_df: pd.DataFrame, args: argparse.Name
         dilution_list = (df['dilution'].unique())
         tubes = np.repeat(a = len(df['replicate'].unique()), repeats=len(dilution_list))
         mobj = micrompn.mpn(positive, tubes, dilution_list) 
-        temp_df.loc[len(temp_df)] = [list(df['plate'])[0], sample_no.split('_')[1], mobj['MPN'], mobj['MPN_adj'], mobj['UB'], mobj['UB']]
+        temp_df.loc[len(temp_df)] = [list(df['plate'])[0], sample_no.split('_')[1], mobj['MPN'], mobj['MPN_adj'], mobj['UB'], mobj['UB'], mobj['RI']]
     return temp_df
 
 
@@ -209,7 +209,7 @@ def main(arglist: list = None) -> None:
     args = parser.parse_args(arglist)
     logger = _logger_setup(args.logfile)
     # set up pandas datafreame 
-    dtype_dict = {'plate': str, 'sample': str, 'mpn': float, 'mpn_adj': float, 'upper': float, 'lower': float}
+    dtype_dict = {'plate': str, 'sample': str, 'mpn': float, 'mpn_adj': float, 'upper': float, 'lower': float, 'rarity': float}
     temp_df= pd.DataFrame(columns=dtype_dict.keys()).astype(dtype_dict)
     if is_file_or_directory(args.data):
         clean_plate = import_plate(platefile=args.data,
