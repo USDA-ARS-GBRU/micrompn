@@ -10,15 +10,15 @@ Authors
 
 About MPN
 ------------------
-Most probable number (MPN) is a  way of estimating now many viable bacteria are in a sample. 
+Most probable number (MPN) is a  way of estimating how many viable bacteria are in a sample. 
 A series of dilutions are made with replication and the  number of  tubes  or wells with bacterial growth is recored.
-This presence/absence and dilution information is used to calcualte the mos probable number of bacteria in a starting sample.
+This presence/absence and dilution information is used to calculate the most probable number of bacteria in a starting sample.
 
-With liquid handling robots and plate reader thsis method can be baster than conventniona plate counting or 
+With liquid handling robots and plate reader this method can be baster than conventniona plate counting or 
 spotting for some applications. 
 
-The addition of a florescent mmarker gene into a microbe of interest can be 
-used to screen for conditions that alter the growth of a specifi microbe in a complx community 
+The addition of a fluorescent mmarker gene into a microbe of interest can be 
+used to screen for conditions that alter the growth of a specific microbe in a complex community 
 even when selective media does not work.
 
 About MicroMPN
@@ -26,7 +26,7 @@ About MicroMPN
 
 
 This python package has a command line program processing data from a plate reader. Users provide two types of files: 
-A plate layout file specified in Wellmap format and a  CSV plate reader file with columns for the Plate, 
+A plate layout file specified in Wellmap format and a  CSV plate reader file with columns for the plate, 
 the well or row and column and the optical value used for determining growth.
 
 
@@ -53,12 +53,12 @@ Getting Started
 
 
 MicroMPN uses two types of files, a file specifing the layout of the plate and a file 
-containing the data from the palte reader.
+containing the data from the plate reader.
 
 1. Wellmap TOML format <https://wellmap.readthedocs.io/en/latest/index.html>  is a simple way of specifing plate layouts.
-   The wellmap site has extensive doumentation about how to specify the layout. 
+   The wellmap site has extensive documentation about how to specify the layout. 
    
-   Ane example of the format is below. Features can be specifies by rows columns or blocks:
+   An example of the format is below. Features can be specifies by rows columns or blocks:
 
 .. code-block::
 
@@ -96,9 +96,9 @@ Plate reader data files vary by instrument but most allow the output of data in 
 
 The named columns needed in a CSV are:
 
- * a plate column
+* a plate column
 * a well column OR plate column AND plate row columns
-*an optical value column used for the determination of growth
+* an optical value column used for the determination of growth
 
 .. code-block::
 
@@ -130,7 +130,7 @@ After running microMPN the user will be provided with a CSV containing MPN estim
 
 
 The output contains the MPN, an MPN value corrected for bias due to the number of 
-tubes used and the concentration and an upper and lower bound on the estimate. 
+tubes used and the concentration and an upper and lower bound of the estimate. 
 MicroMPN uses the 95% confidence bound estimation form Jarvis et al. 2010
 
 Jarvis B, Wilrich C, Wilrich P-T (2010). "Reconsideration of the derivation of Most Probable Numbers, 
