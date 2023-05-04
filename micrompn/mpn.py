@@ -1,4 +1,5 @@
-"""MicroMPN:mpn most probabable number (MPN) estimates in microtite paltes
+"""MicroMPN a Python command line program for automating microbiology most probable 
+   number (MPN) estimates in laboratory microplates
 
     This module of MicroMPN is a transpiled version of a portion of the MPN R package:
 
@@ -66,7 +67,7 @@ def ptEstAdj_MPN(MPN: float, positive: np.array, tubes: np.array, amount: np.arr
     :type tubes: np.array
     :param amount: A vector of the dilution for each group of wells (smaller is more dilute) 
     :type amount: np.array
-    :return: A bias adjusted setimate of MPN
+    :return: A bias adjusted estimate of MPN
     :rtype: float
     """
 
@@ -95,7 +96,7 @@ def ptEstAdj_MPN(MPN: float, positive: np.array, tubes: np.array, amount: np.arr
 
 
 def logL_MPN(lambda_: float, positive: np.array, tubes: np.array, amount: np.array) -> float:
-    """Estimate the Log-liklihood of the MPN estimate
+    """Estimate the Log-likelihood of the MPN estimate
 
     :param lambda_: MPN
     :type lambda_: float
@@ -116,7 +117,7 @@ def logL_MPN(lambda_: float, positive: np.array, tubes: np.array, amount: np.arr
 
 
 def logLR_MPN(lambda_: float, lambda_hat: float, positive: np.array, tubes: np.array, amount: np.array) -> float:
-    """Estimate the Log-liklihood  ratio of the MPN estimate
+    """Estimate the Log-likelihood ratio of the MPN estimate
 
     :param lambda_: MPN
     :type lambda_: float
@@ -138,7 +139,7 @@ def logLR_MPN(lambda_: float, lambda_hat: float, positive: np.array, tubes: np.a
 
 
 def logLRroot_MPN(lambda_: float, lambda_hat: float, positive: np.array, tubes: np.array, amount: np.array, crit_val: float) -> float:
-    """Find roots to get LR confidence limits
+    """Find roots to get Log ratio confidence limits
 
     :param lambda_: MPN
     :type lambda_: float
@@ -162,7 +163,7 @@ def logLRroot_MPN(lambda_: float, lambda_hat: float, positive: np.array, tubes: 
 
 
 def jarvisCI_MPN(MPN: float, positive: np.array, tubes: np.array, amount: np.array, conf_level: float) -> Dict[str, float]:
-    """Estimate the confidence itnerval of the MPN estimate using the method in Jarvis et al. (2010)
+    """Estimate the confidence interval of the MPN estimate using the method in Jarvis et al. (2010)
 
     Jarvis B, Wilrich C, Wilrich P-T (2010). "Reconsideration of the derivation of Most Probable Numbers, their standard deviations, confidence bounds and rarity values." Journal of Applied Microbiology, 109, 1660-1667. https://doi.org/10.1111/j.1365-2672.2010.04792.x
 
@@ -218,7 +219,7 @@ def jarvisCI_MPN(MPN: float, positive: np.array, tubes: np.array, amount: np.arr
 
 
 def likeRatioCI_MPN(MPN: float, positive: np.array, tubes: np.array, amount: np.array, conf_level: float)-> Dict[str, float]:
-    """Estimation of the confidence interval by the liklihood ratio method. 
+    """Estimation of the confidence interval by the likelihood ratio method.
 
     For details see:
 
@@ -234,7 +235,7 @@ def likeRatioCI_MPN(MPN: float, positive: np.array, tubes: np.array, amount: np.
     :type amount: np.array
     :param conf_level: A scalar value between zero and one for the confidence level. Typically 0.95 (i.e., a 95 percent confidence interval).
     :type conf_level: float
-    :return: A fdictionary containing:
+    :return: A dictionary containing:
         LB: The lower bound of the confidence interval.
         UB: The upper bound of the confidence interval.
     :rtype: Dict[str, float]
@@ -310,13 +311,13 @@ def isMissing(x: Union[list, np.array]) -> bool:
 def checkInputs_mpn(positive: Union[list, np.array], tubes: Union[list,np.array], amount: Union[list, np.array], conf_level: float) -> None:
     """Validations of input data to the MPN function
 
-    :param positive:  a vector of the count of positive wells at a specific diluton
+    :param positive:  a vector of the count of positive wells at a specific dilution
     :type positive: Union[list, np.array]
     :param tubes:  A vector of the total number of wells at a dilution
     :type tubes: Union[list,np.array]
     :param amount:  A vector of the dilution for each group of wells (smaller is more dilute) 
     :type amount: Union[list, np.array]
-    :param conf_level: The conficence level for estimating uper and lower bounds of MPN
+    :param conf_level: The confidence level for estimating upper and lower bounds of MPN
     :type conf_level: float
     :raises ValueError: Any validation failure raises a value error
 
@@ -358,8 +359,8 @@ def mpn(positive: Union[List[int], np.array], tubes: Union[List[int], np.array],
     When all tubes are positive, the point estimate for MPN is Inf (same approach as Jarvis et al.) since no finite maximum likelihood estimate (MLE) exists. The BAM tables "list the MPN for this outcome as greater than the highest MPN for an outcome with at least one negative tube" (App.2). Here, the difference is probably trivial since the sample should be further diluted if all tubes test positive.
     The bias adjustment for the point estimate uses the method of Salama et al. (1978). Also see Haas (1989).
     Currently, confidence intervals can only be calculated using the Jarvis (2010) or likelihood ratio (LR) approach (Ridout, 1994). The BAM tables use an alternate approach.
-    We slightly modified Jarvis' approach when all tubes are positive or all are negative; we use \alphaα instead of \alpha / 2α/2 since these are one-sided intervals.
-      The Ridout (1994) LR approach uses the same technique (with \alphaα) for these two extreme cases.
+    We slightly modified Jarvis' approach when all tubes are positive or all are negative; we use \alpha instead of \alpha / 2α/2 since these are one-sided intervals.
+      The Ridout (1994) LR approach uses the same technique (with \alpha) for these two extreme cases.
     If the Rarity Index is less than 1e-04, the experimental results are highly improbable. The researcher may consider running the experiment again and/or changing the dilution levels.
 
     References:

@@ -7,7 +7,7 @@ name = "micrompn"
 authors = [
     {name = "Adam R. Rivers", email = "adam.rivers@usda.gov"},
 ]
-description = "MicroMPN: A Python command line program for automating most probable number (MPN) estimates in microtiter plates" 
+description = "MicroMPN: Software to estimate Most Probable Number (MPN) bacterial abundance from microplates. " 
 
 readme = "README.rst"
 requires-python = ">=3.8"
@@ -16,7 +16,7 @@ license = {text = "CC0"}
 classifiers = [
     "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
-    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
     "pandas",
