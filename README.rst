@@ -1,5 +1,5 @@
 ==================
-MicroMPN: A Python command line program for automating most probable number (MPN) estimates in microtiter plates
+MicroMPN: Software for automating most probable number (MPN) estimates in laboratory microplates
 ==================
 
 Authors
@@ -17,7 +17,7 @@ This presence/absence and dilution information is used to calculate the most pro
 With liquid handling robots and plate reader this method can be baster than conventniona plate counting or 
 spotting for some applications. 
 
-The addition of a fluorescent mmarker gene into a microbe of interest can be 
+The addition of a fluorescent marker gene into a microbe of interest can be 
 used to screen for conditions that alter the growth of a specific microbe in a complex community 
 even when selective media does not work.
 
@@ -32,7 +32,7 @@ the well or row and column and the optical value used for determining growth.
 
 Developers of Python Packages 
 who need an MPN calculation may want to use MicroMPN's mpn estimation function.
-This is to my knowledge the only python implmentation of MPN estimation in the Python Package Index.
+This is to my knowledge the only python implementation of MPN estimation in the Python Package Index.
 This function is derived from Martine Ferguson and John Ihrie's MPN R package:
 
 Martine Ferguson and John Ihrie. (2019). MPN: Most Probable Number and 
@@ -61,7 +61,6 @@ containing the data from the plate reader.
    An example of the format is below. Features can be specifies by rows columns or blocks:
 
 .. code-block::
-
 [col]
 1.dilution = 1e00
 2.dilution = 1e-01
@@ -101,7 +100,6 @@ The named columns needed in a CSV are:
 * an optical value column used for the determination of growth
 
 .. code-block::
-
 plate_unique,plate_id,plate_well,rfu
 plate_0,RFP_1_plate_1_shaking,A1,27.081
 plate_0,RFP_1_plate_1_shaking,A2,22.001
@@ -140,26 +138,51 @@ their standard deviations, confidence bounds and rarity values." Journal of Appl
 Usage
 -----
 ..  code-block:: 
-
-micrompn: Software to estimate Most Probable Number (MPN) bacterial abundance from microtiter plates
+MicroMPN: Software to estimate Most Probable Number (MPN) bacterial abundance from
+microplates
 
 options:
   -h, --help            show this help message and exit
-  --wellmap WELLMAP     A TOML file with plate layout speficied in wellmap format
-  --data DATA           A csv file or a directory contiining csv files with the plate name, optical value, and well or row and column data
-  --cutoff CUTOFF       The value from the plate reader above which a well is classfied as positive
+  --wellmap WELLMAP     A TOML file with plate layout specified in wellmap format
+  --data DATA           A csv file or a directory containing csv files with the plate
+                        name, optical value, and well or row and column data
+  --cutoff CUTOFF       The value from the plate reader above which a well is
+                        classified as positive
   --outfile OUTFILE     The file path and name for the results
   --plate_name PLATE_NAME
-                        The name of the column containing the plate identifier in the data file
+                        The name of the column containing the plate identifier in the
+                        data file
   --value_name VALUE_NAME
-                        The name of the column containing the optical signal column in the data file
+                        The name of the column containing the optical signal column
+                        in the data file
   --well_name WELL_NAME
-                        The name of the column containing the well identifier in the data file
-  --col_name COL_NAME   The name of the column containing the plate column identifier in the data file
-  --row_name ROW_NAME   The name of the column containing the plate row identifier in the data file
-  --zero_padded         if present the well value in the data file is treated as zero-padded, e.g. A01
+                        The name of the column containing the well identifier in the
+                        data file
+  --col_name COL_NAME   The name of the column containing the plate column identifier
+                        in the data file
+  --row_name ROW_NAME   The name of the column containing the plate row identifier in
+                        the data file
+  --zero_padded         If present, the well value in the data file is treated as
+                        zero-padded, e.g. A01
+  --trim_positives      If present, the list of positive wells will be trimmed to the
+                        most dilute all positive dilution and the least dilute all
+                        negative dilution. This helps if early dilutions are turbid.
   --version, -v         show program's version number and exit
   --logfile LOGFILE, -l LOGFILE
 
-
 The command line options are listed above.
+
+Example
+--------
+
+..  code-block:: 
+micrompn --wellmap micrompn/data/example1_mapfile.toml \
+         --data micrompn/data/example1_plate_data.csv \
+         --well_name plate_well \
+         --plate_name plate_unique \
+         --outfile test-output-cutoff6-trimmed.csv \
+         --trim_positive\
+         --cutoff 6
+
+
+
