@@ -1,15 +1,15 @@
-==================
-MicroMPN: Software for automating most probable number (MPN) estimates in laboratory microplates
-==================
 
-Authors
-------------------
+# MicroMPN: Software for automating most probable number (MPN) estimates from laboratory microplates
+
+
+## Authors
+
 * Adam Rivers, United States Department of Agriculture, Agricultural Research Service
 * Karla Franco Meléndez, United States Department of Agriculture, Agricultural Research Service
 
 
-About MPN
-------------------
+## About MPN
+
 Most probable number (MPN) is a  way of estimating how many viable bacteria are in a sample. 
 A series of dilutions are made with replication and the  number of  tubes  or wells with bacterial growth is recored.
 This presence/absence and dilution information is used to calculate the most probable number of bacteria in a starting sample.
@@ -21,8 +21,8 @@ The addition of a fluorescent marker gene into a microbe of interest can be
 used to screen for conditions that alter the growth of a specific microbe in a complex community 
 even when selective media does not work.
 
-About MicroMPN
----------------
+## About MicroMPN
+
 
 
 This python package has a command line program processing data from a plate reader. Users provide two types of files: 
@@ -38,29 +38,30 @@ This function is derived from Martine Ferguson and John Ihrie's MPN R package:
 Martine Ferguson and John Ihrie. (2019). MPN: Most Probable Number and 
 Other Microbial Enumeration Techniques. R package version 0.3.0. <https://CRAN.R-project.org/package=MPN> .
 
-Installing
----------------
-
-The package can be installed from the python package index 
-
-.. code-block:: bash
-  pip install micrompn
+## Installing
 
 
+The package can be installed from Github 
 
-Getting Started
----------------
+```bash
+  git clone git@github.com:USDA-ARS-GBRU/micrompn.git
+  cd micrompn
+  pip install .
+```
+
+
+## Getting Started
+
 
 
 MicroMPN uses two types of files, a file specifing the layout of the plate and a file 
 containing the data from the plate reader.
 
-1. Wellmap TOML format <https://wellmap.readthedocs.io/en/latest/index.html>  is a simple way of specifing plate layouts.
-   The wellmap site has extensive documentation about how to specify the layout. 
+1. Wellmap TOML format <https://wellmap.readthedocs.io/en/latest/index.html>  is a simple way of specifing plate layouts. The wellmap site has extensive documentation about how to specify the layout. 
    
-   An example of the format is below. Features can be specifies by rows columns or blocks:
+An example of the format is below. Features can be specifies by rows columns or blocks:
 
-.. code-block::
+```
 [col]
 1.dilution = 1e00
 2.dilution = 1e-01
@@ -85,7 +86,7 @@ G.replicate = 7
 H.replicate = 8
 [block.12x8.'A1']
 sample = 1
-
+```
 
 
 
@@ -99,7 +100,7 @@ The named columns needed in a CSV are:
 * a well column OR plate column AND plate row columns
 * an optical value column used for the determination of growth
 
-.. code-block::
+```
 plate_unique,plate_id,plate_well,rfu
 plate_0,RFP_1_plate_1_shaking,A1,27.081
 plate_0,RFP_1_plate_1_shaking,A2,22.001
@@ -110,34 +111,31 @@ plate_0,RFP_1_plate_1_shaking,A6,10.017
 plate_0,RFP_1_plate_1_shaking,A7,9.373
 plate_0,RFP_1_plate_1_shaking,A8,9.049
 plate_0,RFP_1_plate_1_shaking,A9,3.78
-
+```
 
 The names of these columns are specified in the command-line input microMPN.
 
 After running microMPN the user will be provided with a CSV containing MPN estimates for each plate and sample
 
-.. code-block::
-
-       plate sample           mpn       mpn_adj         upper         lower
+```
+plate sample           mpn       mpn_adj         upper         lower
 0    plate_0      0  1.005445e+08  9.220112e+07  2.295985e+08  2.295985e+08
 1    plate_1      1  1.124383e+08  1.029753e+08  2.609546e+08  2.609546e+08
 2    plate_2      2  3.388299e+07  2.797877e+07  6.811641e+07  6.811641e+07
 3    plate_3      3  7.636579e+06  6.877494e+06  1.828966e+07  1.828966e+07
 4    plate_4      4  7.515884e+05  6.752848e+05  1.195778e+06  1.195778e+06
 5    plate_5      5  1.032498e+04  9.468444e+03  1.668272e+04  1.668272e+04
+```
 
-
-The output contains the MPN, an MPN value corrected for bias due to the number of 
-tubes used and the concentration and an upper and lower bound of the estimate. 
-MicroMPN uses the 95% confidence bound estimation form Jarvis et al. 2010
+The output contains the MPN, an MPN value corrected for bias due to the number of tubes used and the concentration and an upper and lower bound of the estimate. MicroMPN uses the 95% confidence bound estimation form Jarvis et al. 2010.
 
 Jarvis B, Wilrich C, Wilrich P-T (2010). "Reconsideration of the derivation of Most Probable Numbers, 
 their standard deviations, confidence bounds and rarity values." Journal of Applied Microbiology, 1
 09, 1660-1667. <https://doi.org/10.1111/j.1365-2672.2010.04792.x>
 
-Usage
------
-..  code-block:: 
+## Usage
+
+```
 MicroMPN: Software to estimate Most Probable Number (MPN) bacterial abundance from
 microplates
 
@@ -169,20 +167,21 @@ options:
                         negative dilution. This helps if early dilutions are turbid.
   --version, -v         show program's version number and exit
   --logfile LOGFILE, -l LOGFILE
+```
 
 The command line options are listed above.
 
-Example
---------
+## Example
 
-..  code-block:: 
+
+```bash
 micrompn --wellmap micrompn/data/example1_mapfile.toml \
          --data micrompn/data/example1_plate_data.csv \
          --well_name plate_well \
          --plate_name plate_unique \
          --outfile test-output-cutoff6-trimmed.csv \
-         --trim_positive\
+         --trim_positive \
          --cutoff 6
-
+```
 
 
