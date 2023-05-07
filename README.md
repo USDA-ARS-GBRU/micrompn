@@ -14,8 +14,8 @@ Most probable number (MPN) is a  way of estimating how many viable bacteria are 
 A series of dilutions are made with replication and the  number of  tubes  or wells with bacterial growth is recored.
 This presence/absence and dilution information is used to calculate the most probable number of bacteria in a starting sample.
 
-With liquid handling robots and plate reader this method can be baster than conventniona plate counting or 
-spotting for some applications. 
+With liquid handling robots and plate reader this method can be faster than conventional plate counting or 
+spotting on agar for some applications. 
 
 The addition of a fluorescent marker gene into a microbe of interest can be 
 used to screen for conditions that alter the growth of a specific microbe in a complex community 
