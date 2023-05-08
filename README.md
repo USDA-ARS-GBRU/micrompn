@@ -10,33 +10,31 @@
 
 ## About MPN
 
-Most probable number (MPN) is a  way of estimating how many viable bacteria are in a sample. 
-A series of dilutions are made with replication and the  number of  tubes  or wells with bacterial growth is recored.
-This presence/absence and dilution information is used to calculate the most probable number of bacteria in a starting sample.
+Most probable number (MPN) is a method  used for estimating how many viable microorganims are present in a sample. 
+A series of dilutions are made with replication and the  number of  tubes or wells with microbial growth are recored.
+This presence/absence and dilution information is used to calculate the most probable number of microbes in a starting sample. 
+
+The addition of a fluorescent marker gene into a microbe of interest can make the MPN assay specific.
 
 With liquid handling robots and plate reader this method can be faster than conventional plate counting or 
 spotting on agar for some applications. 
 
-The addition of a fluorescent marker gene into a microbe of interest can be 
-used to screen for conditions that alter the growth of a specific microbe in a complex community 
-even when selective media does not work.
+
 
 ## About MicroMPN
-
-
 
 This python package has a command line program processing data from a plate reader. Users provide two types of files: 
 A plate layout file specified in Wellmap format and a  CSV plate reader file with columns for the plate, 
 the well or row and column and the optical value used for determining growth.
 
-
-Developers of Python Packages 
-who need an MPN calculation may want to use MicroMPN's mpn estimation function.
+Developers of Python Packages who need an MPN calculation may want to use MicroMPN's mpn estimation function.
 This is to my knowledge the only python implementation of MPN estimation in the Python Package Index.
 This function is derived from Martine Ferguson and John Ihrie's MPN R package:
 
 Martine Ferguson and John Ihrie. (2019). MPN: Most Probable Number and 
 Other Microbial Enumeration Techniques. R package version 0.3.0. <https://CRAN.R-project.org/package=MPN> .
+
+
 
 ## Installing
 
@@ -51,8 +49,6 @@ The package can be installed from Github
 
 
 ## Getting Started
-
-
 
 MicroMPN uses two types of files, a file specifing the layout of the plate and a file 
 containing the data from the plate reader.
@@ -164,7 +160,8 @@ options:
                         zero-padded, e.g. A01
   --trim_positives      If present, the list of positive wells will be trimmed to the
                         most dilute all positive dilution and the least dilute all
-                        negative dilution. This helps if early dilutions are turbid.
+                        negative dilution. This helps if early dilutions have improbable
+                        wells.
   --version, -v         show program's version number and exit
   --logfile LOGFILE, -l LOGFILE
 ```
