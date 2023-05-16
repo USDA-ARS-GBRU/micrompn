@@ -211,7 +211,7 @@ def process_plate(wellmap_file: str, plate_df: pd.DataFrame, args: argparse.Name
             if args.trim_positives:
                 positive, tubes, dilution_list = trim_counts(positive, tubes, dilution_list)
             mobj = micrompn.mpn(positive, tubes, dilution_list) 
-            temp_df.loc[len(temp_df)] = [list(df['plate'])[0], sample_no.split('_')[1], mobj['MPN'], mobj['MPN_adj'], mobj['UB'], mobj['UB'], mobj['RI']]
+            temp_df.loc[len(temp_df)] = [list(df['plate'])[0], sample_no.split('_')[1], mobj['MPN'], mobj['MPN_adj'], mobj['UB'], mobj['LB'], mobj['RI']]
         return temp_df
     except Exception as e:
         logger.exception(e)
