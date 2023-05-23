@@ -1,6 +1,10 @@
 """MicroMPN: a Python command line program for automating microbiology most probable 
    number (MPN) estimates in laboratory microplates
 
+   United States Department of Agriculture
+
+   MAintainers 
+
 """
 import os
 import sys

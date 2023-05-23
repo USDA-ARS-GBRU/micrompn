@@ -11,10 +11,10 @@
 ## About MPN
 
 Most probable number (MPN) is a  way of estimating how many viable bacteria are in a sample. 
-A series of dilutions are made with replication and the  number of  tubes  or wells with bacterial growth is recored.
+A series of dilutions are made with replication and the  number of  tubes  or wells with bacterial growth is recorded.
 This presence/absence and dilution information is used to calculate the most probable number of bacteria in a starting sample.
 
-With liquid handling robots and plate reader this method can be baster than conventniona plate counting or 
+With liquid handling robots and plate reader this method can be baster than conventional plate counting or 
 spotting for some applications. 
 
 The addition of a fluorescent marker gene into a microbe of interest can be 
@@ -54,10 +54,10 @@ The package can be installed from Github
 
 
 
-MicroMPN uses two types of files, a file specifing the layout of the plate and a file 
+MicroMPN uses two types of files, a file specifying the layout of the plate and a file 
 containing the data from the plate reader.
 
-1. Wellmap TOML format <https://wellmap.readthedocs.io/en/latest/index.html>  is a simple way of specifing plate layouts. The wellmap site has extensive documentation about how to specify the layout. 
+1. Wellmap TOML format <https://wellmap.readthedocs.io/en/latest/index.html>  is a simple way of specifying plate layouts. The wellmap site has extensive documentation about how to specify the layout. 
    
 An example of the format is below. Features can be specifies by rows columns or blocks:
 
