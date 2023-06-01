@@ -325,13 +325,13 @@ def checkInputs_mpn(positive: Union[list, np.array], tubes: Union[list,np.array]
     l_tubes = len(tubes)
     l_amount = len(amount)
     if l_positive != l_tubes or l_tubes != l_amount:
-        raise ValueError("'positive', 'tubes', & 'amount' must be the same length")
+        raise ValueError("positive, tubes, and amount must be the same length")
     for datavect in [positive, tubes, amount]:
         if isMissing(datavect):
-            raise ValueError("'positive', 'tubes', and  'amount' cannot have missing values")
-    for datavect in [positive, tubes, amount]:
-        if not all(isinstance(i, (int, float)) for i in datavect):
-            raise TypeError("'positive', 'tubes', 'amount', must be numeric")
+            raise ValueError("'positive', 'tubes', and 'amount' cannot have missing values")
+    # for datavect in [positive, tubes, amount]:
+    #    if not all(isinstance(i, (int, float)) for i in datavect):
+    #        raise TypeError("must be real number, not str")
     if any([t < 1 for t in tubes]) or any([t != round(t) for t in tubes]):
         raise ValueError("'tubes' must contain positive whole numbers")
     if any([p < 0 for p in positive]) or any([p != round(p) for p in positive]):
@@ -339,7 +339,7 @@ def checkInputs_mpn(positive: Union[list, np.array], tubes: Union[list,np.array]
     if any([a <= 0 for a in amount]):
         raise ValueError("'amount' must contain positive values")
     if len(amount) > 1:
-        if max([amount[i] - amount[i+1] for i in range(len(amount)-1)]) <= 0:
+        if min([amount[i] - amount[i+1] for i in range(len(amount)-1)]) <= 0:
             raise ValueError("'amount' must be in descending order")
     if not isinstance(conf_level, float):
         raise ValueError("'conf_level' must be a float")

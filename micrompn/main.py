@@ -3,8 +3,6 @@
 
    United States Department of Agriculture
 
-   MAintainers 
-
 """
 import os
 import sys
@@ -78,7 +76,7 @@ def _logger_setup(logfile: str) -> logging.Logger:
 
 logger = _logger_setup("micrompn.log")
 
-def split_dataframe(df: pd.DataFrame) -> Tuple[List[pd.DataFrame], pd.Series]:
+def split_dataframe(df: pd.DataFrame) -> Tuple[List[pd.DataFrame], np.ndarray]:
     """ The function breaks a dataframe of plate data and layout data and into a Tuple containing a list of 
         dataframes split by plates and samples and a pd.Series of unique samples
 
@@ -106,6 +104,7 @@ def count_above_cutoff(df: pd.DataFrame, cutoff: float) -> np.array:
     :return: An array of the counts of positive wells at each dilution
     :rtype: np.array
     """
+    print(df)
     grouped = df.groupby('dilution')
     counts = []
     for name, group in grouped:

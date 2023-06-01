@@ -12,8 +12,9 @@ from micrompn import (
     jarvisCI_MPN,
     likeRatioCI_MPN,
     rarity_MPN,
+    isMissing,
+    checkInputs_mpn,
     mpn,
-    isMissing
 )
 
 def test_ptEst_MPN():
@@ -156,6 +157,39 @@ def test_isMissing():
     assert result1 == expected_output1
     assert result2 == expected_output2
     assert result3 == expected_output3
+
+def test_checkInputs_mpn():
+    positive = [1, 3, 5, 0, 2]
+    tubes = [5, 5, 5, 5, 5]
+    amount = [1, 0.1, 0.01, 0.001, 0.0001]
+    conf_level = 0.95
+
+    # No exception should be raised for valid inputs
+    checkInputs_mpn(positive, tubes, amount, conf_level)
+
+    # Test cases for raising exceptions
+    with pytest.raises(ValueError, match="positive, tubes, and amount must be the same length"):
+        checkInputs_mpn(positive + [1], tubes, amount, conf_level)
+    with pytest.raises(ValueError, match="'positive', 'tubes', and 'amount' cannot have missing values"):
+        checkInputs_mpn([1, 3, 5, 0, float('nan')], tubes, amount, conf_level)
+    with pytest.raises(TypeError, match="must be real number, not str"):
+        checkInputs_mpn(positive, tubes, [1, 0.1, 0.01, 0.001, "abc"], conf_level)
+    with pytest.raises(ValueError, match="'tubes' must contain positive whole numbers"):
+        checkInputs_mpn(positive, [-1, 3, 5, 0, 2], amount, conf_level)
+    with pytest.raises(ValueError, match="'positive' must contain non-negative whole numbers"):
+        checkInputs_mpn([-1, 3, 5, 0, 2], tubes, amount, conf_level)
+    with pytest.raises(ValueError, match="'amount' must contain positive values"):
+        checkInputs_mpn(positive, tubes, [1, 0.1, -0.01, 0.001, 0.0001], conf_level)
+    with pytest.raises(ValueError, match="'amount' must be in descending order"):
+        checkInputs_mpn(positive, tubes, [1, 0.1, 0.01, 0.1, 0.0001], conf_level)
+    with pytest.raises(ValueError, match="'conf_level' must be a float"):
+        checkInputs_mpn(positive, tubes, amount, "0.95")
+    with pytest.raises(ValueError, match="'conf_level' must be between 0 & 1"):
+        checkInputs_mpn(positive, tubes, amount, -0.5)
+        checkInputs_mpn(positive, tubes, amount, 1.5)
+    with pytest.raises(ValueError, match="more positive tubes than possible"):
+        checkInputs_mpn([1, 6, 5, 0, 2], tubes, amount, conf_level)
+
 
 def test_mpn():
     positive = [10, 5, 1]
