@@ -304,9 +304,7 @@ def isMissing(x: Union[list, np.array]) -> bool:
     :rtype: bool
     """
 
-    # Determines if any elements in a numeric vector are missing.
-    for parameter in x:
-        return any([math.isnan(i) or math.isinf(i) for i in parameter])
+    return any([math.isnan(i) or math.isinf(i) for i in x])
 
 def checkInputs_mpn(positive: Union[list, np.array], tubes: Union[list,np.array], amount: Union[list, np.array], conf_level: float) -> None:
     """Validations of input data to the MPN function
@@ -328,20 +326,23 @@ def checkInputs_mpn(positive: Union[list, np.array], tubes: Union[list,np.array]
     l_amount = len(amount)
     if l_positive != l_tubes or l_tubes != l_amount:
         raise ValueError("'positive', 'tubes', & 'amount' must be the same length")
-    #if isMissing([positive, tubes, amount]):
-    #    raise ValueError("missing values are not allowed")
-    #if not all(isinstance(i, (int, float)) for i in [positive, tubes, amount, conf_level]):
-    #    raise TypeError("'positive', 'tubes', 'amount', & 'conf_level' must be numeric")
+    for datavect in [positive, tubes, amount]:
+        if isMissing(datavect):
+            raise ValueError("'positive', 'tubes', and  'amount' cannot have missing values")
+    for datavect in [positive, tubes, amount]:
+        if not all(isinstance(i, (int, float)) for i in datavect):
+            raise TypeError("'positive', 'tubes', 'amount', must be numeric")
     if any([t < 1 for t in tubes]) or any([t != round(t) for t in tubes]):
         raise ValueError("'tubes' must contain positive whole numbers")
     if any([p < 0 for p in positive]) or any([p != round(p) for p in positive]):
         raise ValueError("'positive' must contain non-negative whole numbers")
     if any([a <= 0 for a in amount]):
         raise ValueError("'amount' must contain positive values")
-    #if len(amount) > 1 and max([amount[i] - amount[i+1] for i in range(len(amount)-1)]) >= 0:
-    #    raise ValueError("'amount' must be in descending order")
-    #if len(conf_level) != 1:
-    #    raise ValueError("'conf_level' must have length of 1")
+    if len(amount) > 1:
+        if max([amount[i] - amount[i+1] for i in range(len(amount)-1)]) <= 0:
+            raise ValueError("'amount' must be in descending order")
+    if not isinstance(conf_level, float):
+        raise ValueError("'conf_level' must be a float")
     if conf_level <= 0 or conf_level >= 1:
         raise ValueError("'conf_level' must be between 0 & 1")
     if any([p > t for p,t in zip(positive, tubes)]):

@@ -76,7 +76,7 @@ def _logger_setup(logfile: str) -> logging.Logger:
         print("An error occurred setting up logging")
         raise e
 
-# logger = _logger_setup("micrompn.log")
+logger = _logger_setup("micrompn.log")
 
 def split_dataframe(df: pd.DataFrame) -> Tuple[List[pd.DataFrame], pd.Series]:
     """ The function breaks a dataframe of plate data and layout data and into a Tuple containing a list of 
