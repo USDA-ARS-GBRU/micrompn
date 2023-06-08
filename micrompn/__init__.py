@@ -1,15 +1,10 @@
-from importlib.metadata import version, PackageNotFoundError
+
 
 from .mpn import *
 from .main import *
+from ._version import *
 
 
 
-__all__ = ["mpn", "main"]
+__all__ = ["mpn", "main", "_version"]
 
-
-try:
-    __version__ = version("micrompn")
-except PackageNotFoundError:
-    # package is not installed
-    pass

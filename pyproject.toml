@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
+requires = ["setuptools", "setuptools-scm[toml]>=7.1.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -9,7 +9,7 @@ authors = [
 ]
 description = "MicroMPN: Software to estimate Most Probable Number (MPN) bacterial abundance from microplates. " 
 
-readme = "README.rst"
+readme = "README.md"
 requires-python = ">=3.8"
 keywords = ["microbiology", "mpn"]
 license = {text = "CC0"}

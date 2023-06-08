@@ -14,6 +14,7 @@ import numpy as np
 import pandas as pd
 import wellmap
 import micrompn.mpn
+from micrompn import _version
 
 
 def myparser() -> argparse.ArgumentParser:
@@ -37,7 +38,7 @@ def myparser() -> argparse.ArgumentParser:
     parser.add_argument('--zero_padded', action='store_true', help='If present, the well value in the data file is treated as zero-padded, e.g. A01')
     parser.add_argument('--trim_positives', action='store_true', help='If present, the list of positive wells will be trimmed to the most dilute  \
                                                                     all positive dilution and the least dilute all negative dilution. This helps if early dilutions are turbid. ')
-    parser.add_argument('--version', '-v',  action='version', version="%(prog)s (" + micrompn.__version__ + ")")
+    parser.add_argument('--version', '-v',  action='version', version="%(prog)s (" + _version.__version__ + ")")
     parser.add_argument('--logfile', '-l', type=str, default= "micrompn.log")
     return parser
     
