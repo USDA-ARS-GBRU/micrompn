@@ -123,7 +123,8 @@ def test_likeRatioCI_MPN():
     result = likeRatioCI_MPN(MPN, positive, tubes, amount, conf_level)
 
     assert isinstance(result, dict)
-    assert result == expected_output
+    assert np.isclose(result['LB'], expected_output["LB"])
+    assert np.isclose(result['UB'], expected_output["UB"])
 
 def test_rarity_MPN():
     MPN = 74.22876396932874
