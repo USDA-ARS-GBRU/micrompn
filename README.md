@@ -91,10 +91,9 @@ sample = 1
 
 Example of the above TOML layout visualized graphically with the Wellmap command "wellmap.show("microplate.toml")
 
-![wellmap dilution](https://github.com/USDA-ARS-GBRU/MPN-RFU-microplate-assay-data-files/assets/68250738/995e55ca-3df7-4881-a87a-b5e4c57d161a)
+![wellmap replicate](https://github.com/USDA-ARS-GBRU/micrompn/assets/68250738/59f471f0-74e5-44f3-9518-4b287d439745)
 
-![wellmap replicate](https://github.com/USDA-ARS-GBRU/MPN-RFU-microplate-assay-data-files/assets/68250738/ef4308af-284b-47fa-9dcb-780b83a167ae)
-
+![wellmap dilution](https://github.com/USDA-ARS-GBRU/micrompn/assets/68250738/5a1d4203-f26e-46af-8d8c-24580c84e699)
 
 
 2. Plate reader CSV files
