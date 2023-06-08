@@ -17,6 +17,9 @@ classifiers = [
     "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.8",
 ]
 dependencies = [
     "pandas",
@@ -27,6 +30,8 @@ dependencies = [
 ]
 dynamic = ["version"]
 
-
 [project.scripts]
 micrompn = "micrompn:main"
+
+[tool.setuptools_scm]
+write_to = "micrompn/_version.py"

@@ -1,4 +1,5 @@
-import pkg_resources
+from importlib.metadata import version, PackageNotFoundError
+
 from .mpn import *
 from .main import *
 
@@ -6,4 +7,9 @@ from .main import *
 
 __all__ = ["mpn", "main"]
 
-__version__ = "0.1"
+
+try:
+    __version__ = version("micrompn")
+except PackageNotFoundError:
+    # package is not installed
+    pass
