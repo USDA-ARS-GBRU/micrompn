@@ -1,5 +1,7 @@
 [![Python package](https://github.com/USDA-ARS-GBRU/micrompn/actions/workflows/python-package.yml/badge.svg)](https://github.com/USDA-ARS-GBRU/micrompn/actions/workflows/python-package.yml)
 
+[![DOI](https://zenodo.org/badge/632734005.svg)](https://zenodo.org/badge/latestdoi/632734005)
+
 # MicroMPN: Software for automating most probable number (MPN) estimates from laboratory microplates
 
 
