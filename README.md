@@ -52,10 +52,11 @@ The package can be installed from Github
 
 ## Getting Started
 
-MicroMPN uses two types of files, a file specifying the layout of the plate and a file 
-containing the data from the plate reader.
+MicroMPN uses two types of files, a file specifying the layout of the plate and a file containing the data from the plate reader.
 
-1. Wellmap TOML format <https://wellmap.readthedocs.io/en/latest/index.html>  is a simple way of specifying plate layouts. The wellmap site has extensive documentation about how to specify the layout. 
+1. ["Wellmap"](https://wellmap.readthedocs.io/en/latest/index.html)
+
+- A Wellmap TOML format is a simple way of specifying plate layouts. The Wellmap site has extensive documentation about how to specify the layout. 
    
 An example of the format is below. Features can be specifies by rows columns or blocks:
 
@@ -73,6 +74,7 @@ An example of the format is below. Features can be specifies by rows columns or 
 10.dilution = 1e-09
 11.dilution = 1e-10
 12.dilution = 1e-11
+
 [row]
 A.replicate = 1
 B.replicate = 2
@@ -86,37 +88,44 @@ H.replicate = 8
 sample = 1
 ```
 
+Example of the above TOML layout visualized graphically with the Wellmap command "wellmap.show("microplate.toml")
+
+![wellmap dilution](https://github.com/USDA-ARS-GBRU/MPN-RFU-microplate-assay-data-files/assets/68250738/995e55ca-3df7-4881-a87a-b5e4c57d161a)
+
+![wellmap replicate](https://github.com/USDA-ARS-GBRU/MPN-RFU-microplate-assay-data-files/assets/68250738/ef4308af-284b-47fa-9dcb-780b83a167ae)
+
 
 
 2. Plate reader CSV files
 
-Plate reader data files vary by instrument but most allow the output of data in tabular format.
+- Plate reader data files vary by instrument but most allow the output of data in tabular format.
 
-The named columns needed in a CSV are:
+- The named columns needed in a CSV are:
 
-* a plate column
-* a well column OR plate column AND plate row columns
-* an optical value column used for the determination of growth
-
-```
-plate_unique,plate_id,plate_well,rfu
-plate_0,RFP_1_plate_1_shaking,A1,27.081
-plate_0,RFP_1_plate_1_shaking,A2,22.001
-plate_0,RFP_1_plate_1_shaking,A3,12.949
-plate_0,RFP_1_plate_1_shaking,A4,10.328
-plate_0,RFP_1_plate_1_shaking,A5,9.264
-plate_0,RFP_1_plate_1_shaking,A6,10.017
-plate_0,RFP_1_plate_1_shaking,A7,9.373
-plate_0,RFP_1_plate_1_shaking,A8,9.049
-plate_0,RFP_1_plate_1_shaking,A9,3.78
-```
-
-The names of these columns are specified in the command-line input microMPN.
-
-After running microMPN the user will be provided with a CSV containing MPN estimates for each plate and sample
+    * a plate column
+    * a well column OR plate column AND plate row columns
+    * an optical value column used for the determination of growth
 
 ```
-plate sample           mpn       mpn_adj         upper         lower
+plate_unique, plate_id, plate_well, rfu
+plate_0, RFP_1_plate_1_shaking, A1, 27.081
+plate_0, RFP_1_plate_1_shaking, A2, 22.001
+plate_0, RFP_1_plate_1_shaking, A3, 12.949
+plate_0, RFP_1_plate_1_shaking, A4, 10.328
+plate_0, RFP_1_plate_1_shaking, A5, 9.264
+plate_0, RFP_1_plate_1_shaking, A6, 10.017
+plate_0, RFP_1_plate_1_shaking, A7, 9.373
+plate_0, RFP_1_plate_1_shaking, A8, 9.049
+plate_0, RFP_1_plate_1_shaking, A9, 3.78
+
+```
+
+- The names of these columns are specified in the command-line input "micrompn".
+
+- After running MicroMPN the user will be provided with a CSV containing MPN estimates for each plate and sample
+
+```
+plate sample           mpn           mpn_adj         upper         lower
 0    plate_0      0  1.005445e+08  9.220112e+07  2.295985e+08  2.295985e+08
 1    plate_1      1  1.124383e+08  1.029753e+08  2.609546e+08  2.609546e+08
 2    plate_2      2  3.388299e+07  2.797877e+07  6.811641e+07  6.811641e+07
@@ -125,7 +134,7 @@ plate sample           mpn       mpn_adj         upper         lower
 5    plate_5      5  1.032498e+04  9.468444e+03  1.668272e+04  1.668272e+04
 ```
 
-The output contains the MPN, an MPN value corrected for bias due to the number of tubes used and the concentration and an upper and lower bound of the estimate. MicroMPN uses the 95% confidence bound estimation form Jarvis et al. 2010.
+- The output contains the MPN, an MPN value corrected for bias due to the number of tubes used and the concentration and an upper and lower bound of the estimate. MicroMPN uses the 95% confidence bound estimation form Jarvis et al. 2010.
 
 Jarvis B, Wilrich C, Wilrich P-T (2010). "Reconsideration of the derivation of Most Probable Numbers, 
 their standard deviations, confidence bounds and rarity values." Journal of Applied Microbiology, 1
