@@ -44,14 +44,18 @@ Other Microbial Enumeration Techniques. R package version 0.3.0. <https://CRAN.R
 ## Installing
 
 
-The package can be installed from Github 
+1. To install from Github: 
 
 ```bash
   git clone git@github.com:USDA-ARS-GBRU/micrompn.git
   cd micrompn
   pip install .
 ```
+2. To install from PyPI:
 
+```bash
+pip install micrompn
+```
 
 ## Getting Started
 
