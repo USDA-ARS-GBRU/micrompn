@@ -1,0 +1,43 @@
+# The [row] and [col] sections specify which conditions are being tested in 
+# which wells.  The fields within these sections (e.g. `dilution`, `replicate`) 
+# can be anything.  If your plates aren't organized by row and column, there 
+# are other ways to define the plate layout; see the "File format" section for 
+# more details.
+
+[row]
+A.dilution = 1e00
+B.dilution = 1e-01
+C.dilution = 1e-02
+D.dilution = 1e-03
+E.dilution = 1e-04
+F.dilution = 1e-05
+G.dilution = 1e-06
+H.dilution = 1e-07
+
+
+
+[col]
+1.replicate = 1
+2.replicate = 2
+3.replicate = 3
+4.replicate = 4
+5.replicate = 1
+6.replicate = 2
+7.replicate = 3
+8.replicate = 4
+9.replicate = 1
+10.replicate = 2
+11.replicate = 3
+12.replicate = 4
+
+
+[block.4x8.'A1']
+sample = 1
+
+
+[block.4x8.'A5']
+sample = 2
+
+
+[block.4x8.'A9']
+sample = 3

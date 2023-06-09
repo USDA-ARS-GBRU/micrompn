@@ -1,0 +1,67 @@
+# The [row] and [col] sections specify which conditions are being tested in 
+# which wells.  The fields within these sections (e.g. `dilution`, `replicate`) 
+# can be anything.  If your plates aren't organized by row and column, there 
+# are other ways to define the plate layout; see the "File format" section for 
+# more details.
+
+[row]
+A.dilution = 1e00
+B.dilution = 1e-01
+C.dilution = 1e-02
+D.dilution = 1e-03
+E.dilution = 1e-04
+F.dilution = 1e-05
+G.dilution = 1e-06
+H.dilution = 1e-07
+I.dilution = 1e00
+J.dilution = 1e-01
+K.dilution = 1e-02
+L.dilution = 1e-03
+M.dilution = 1e-04
+N.dilution = 1e-05
+O.dilution = 1e-06
+P.dilution = 1e-07
+
+[col]
+1.replicate = 1
+2.replicate = 2
+3.replicate = 3
+4.replicate = 4
+5.replicate = 5
+6.replicate = 6
+7.replicate = 7
+8.replicate = 8
+9.replicate = 1
+10.replicate = 2
+11.replicate = 3
+12.replicate = 4
+13.replicate = 5
+14.replicate = 6
+15.replicate = 7
+16.replicate = 8
+17.replicate = 1
+18.replicate = 2
+19.replicate = 3
+20.replicate = 4
+21.replicate = 5
+22.replicate = 6
+23.replicate = 7
+24.replicate = 8
+
+[block.8x8.'A1']
+sample = 1
+
+[block.8x8.'A9']
+sample = 2
+
+[block.8x8.'A17']
+sample = 3
+
+[block.8x8.'I1']
+sample = 4
+
+[block.8x8.'I9']
+sample = 5
+
+[block.8x8.'I17']
+sample = 6
