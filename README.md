@@ -95,7 +95,7 @@ H.replicate = 8
 sample = 1
 ```
 
-Example of the above TOML layout visualized graphically with the Wellmap command "wellmap.show("microplate.toml")
+Example of the above TOML layout visualized graphically with the Wellmap command wellmap.show("microplate.toml")
 
 ![wellmap replicate](https://github.com/USDA-ARS-GBRU/micrompn/assets/68250738/59f471f0-74e5-44f3-9518-4b287d439745)
 
